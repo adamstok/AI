@@ -3,8 +3,9 @@
 	<h2> Sudoku Solver AI - first attempt </h2>
 	<h5> To do it easily - working only with vim :D :D - easy :D </h5>
 	<body>
-		<form>
-			{% csrf_token%}
+		{{ msg }}
+		<form method='POST'>
+			{% csrf_token %}
 			<input type='number' name='1' id="1"> 
 			<input type='number' name='2' id='2'> 
 			<input type='number' name='3' id='3'>
