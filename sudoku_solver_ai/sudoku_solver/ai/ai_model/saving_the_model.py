@@ -7,7 +7,8 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras import optimizers
 import os
-from sklearn.externals import joblib
+#from sklearn.externals import joblib
+import joblib
 from training_data import X_train2, y_train2
 
 
@@ -30,6 +31,7 @@ optimizer = optimizers.RMSprop(lr=0.00010000)
 regressor.add(Dense(units=81))
 print(regressor.summary())
 regressor.compile(optimizer=optimizer,loss='mean_squared_error')
-regressor.fit(x_train_reshaped,y_train_reshaped,epochs=1000,batch_size=10)
+regressor.fit(x_train_reshaped,y_train_reshaped,epochs=10000,batch_size=10)
+regressor.save('./sudoku_model_v1.h5')
 
 # ??? model.h5 comming soon  ???
