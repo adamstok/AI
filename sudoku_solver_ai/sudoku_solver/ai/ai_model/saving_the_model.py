@@ -19,7 +19,7 @@ y_train_reshaped = y_train.reshape(30,1,81)
 
 
 
-regresssor = Sequential()
+regressor = Sequential()
 regressor.add(LSTM(units = 1000, activation = 'relu', return_sequences = True, input_shape = ((x_train_reshaped.shape[1], 81))))
 regressor.add(Dropout(0.3))
 regressor.add(Dense(1200,activation='relu'))
