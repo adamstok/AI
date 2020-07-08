@@ -8,10 +8,10 @@ from tensorflow.keras.layers import Dense, LSTM, Dropout
 from tensorflow.keras import optimizers
 import os
 from sklearn.externals import joblib
-from training_data import X_train, y_train
+from training_data import X_train2, y_train2
 
 
-X_train, y_train = np.array(X_train), np.array(y_train)
+X_train, y_train = np.array(X_train2), np.array(y_train2)
 
 x_train_reshaped = X_train.reshape(30,1,81)
 y_train_reshaped = y_train.reshape(30,1,81)
