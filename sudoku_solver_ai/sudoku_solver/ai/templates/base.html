@@ -1,103 +1,285 @@
 <html>
 	<br><br>
 	<h2> Sudoku Solver AI - first attempt </h2>
-	<h5> To do it easily - working only with vim :D :D - easy :D </h5>
-	<body>
-		{{ msg }}
+		<body>
+	<style>
+		td {
+			height:30px;
+			width:30px;
+			border:1px solid;
+			text-align:center;
+		}
+		td:first-child {
+			border-left:solid;
+		}
+		td:nth-child(3n) {
+			border-right:solid ;
+		}
+		tr:first-child {
+			border-top:solid;
+		}
+		tr:nth-child(3n) td {
+			border-bottom:solid ;
+		}
+		input{
+			width: 50px;
+			padding: 5px;
+			margin: 0px;
+		}
+		
+		#wrapper {
+		  display: flex;
+		}
+		#left {
+		  flex: 0 0 50%;
+		}
+		#right {
+		    flex: 1;
+		    padding: 150px;
+		}
+
+	</style>
+		{{ msg.1 }}
+		{{ msg.2 }}
+
+	<div id="wrapper">
+        <div id="left">
 		<form method='POST'>
 			{% csrf_token %}
-			<input type='number' name='1' id="1"> 
-			<input type='number' name='2' id='2'> 
-			<input type='number' name='3' id='3'>
-			<input type='number' name='4' id='4'> 
-			<input type='number' name='5' id='5'> 
-			<input type='number' name='6' id='6'> 
-			<input type='number' name='7' id='7'> 
-			<input type='number' name='8' id='8'> 
-			<input type='number' name='9' id='9'> 
-							     
-			<input type='number' name='10' id'10'>
-			<input type='number' name='11' id'11'>
-			<input type='number' name='12' id'12'>
-			<input type='number' name='13' id'13'>
-			<input type='number' name='14' id'14'>
-			<input type='number' name='15' id'15'>
-			<input type='number' name='16' id'16'>
-			<input type='number' name='17' id'17'>
-			<input type='number' name='18' id'18'>
-			<input type='number' name='19' id'19'>
-							     
-			<input type='number' name='20' id'20'>
-			<input type='number' name='21' id'21'>
-			<input type='number' name='22' id'22'>
-			<input type='number' name='23' id'23'>
-			<input type='number' name='24' id'24'>
-			<input type='number' name='25' id'25'>
-			<input type='number' name='26' id'26'>
-			<input type='number' name='27' id'27'>
-			<input type='number' name='28' id'28'>
-			<input type='number' name='29' id'29'>
-							     
-			<input type='number' name='30' id'30'>
-			<input type='number' name='31' id'31'>
-			<input type='number' name='32' id'32'>
-			<input type='number' name='33' id'33'>
-			<input type='number' name='34' id'34'>
-			<input type='number' name='35' id'35'>
-			<input type='number' name='36' id'36'>
-			<input type='number' name='37' id'37'>
-			<input type='number' name='38' id'38'>
-			<input type='number' name='39' id'39'>
-							     
-			<input type='number' name='40' id'40'>
-			<input type='number' name='41' id'41'>
-			<input type='number' name='42' id'42'>
-			<input type='number' name='43' id'43'>
-			<input type='number' name='44' id'44'>
-			<input type='number' name='45' id'45'>
-			<input type='number' name='46' id'46'>
-			<input type='number' name='47' id'47'>
-			<input type='number' name='48' id'48'>
-			<input type='number' name='49' id'49'>
-							     
-			<input type='number' name='50' id'50'>
-			<input type='number' name='51' id'51'>
-			<input type='number' name='52' id'52'>
-			<input type='number' name='53' id'53'>
-			<input type='number' name='54' id'54'>
-			<input type='number' name='55' id'55'>
-			<input type='number' name='56' id'56'>
-			<input type='number' name='57' id'57'>
-			<input type='number' name='58' id'58'>
-			<input type='number' name='59' id'59'>
-							     
-			<input type='number' name='60' id'60'>
-			<input type='number' name='61' id'61'>
-			<input type='number' name='62' id'62'>
-			<input type='number' name='63' id'63'>
-			<input type='number' name='64' id'64'>
-			<input type='number' name='65' id'65'>
-			<input type='number' name='66' id'66'>
-			<input type='number' name='67' id'67'>
-			<input type='number' name='68' id'68'>
-			<input type='number' name='69' id'69'>
-							     
-			<input type='number' name='70' id'70'>
-			<input type='number' name='71' id'71'>
-			<input type='number' name='72' id'72'>
-			<input type='number' name='73' id'73'>
-			<input type='number' name='74' id'74'>
-			<input type='number' name='75' id'75'>
-			<input type='number' name='76' id'76'>
-			<input type='number' name='77' id'77'>
-			<input type='number' name='78' id'78'>
-			<input type='number' name='79' id'79'>
-							     
-			<input type='number' name='80' id'80'>
-			<input type='number' name='81' id'81'>
+			<table>
+			<tr>
+				<td><input type='number' min='1' max='9' name='1' id="1" ></td>
+				<td><input type='number' min='1' max='9' name='2' id='2' ></td>
+				<td><input type='number' min='1' max='9' name='3' id='3' ></td>
+				<td><input type='number' min='1' max='9' name='4' id='4' ></td>
+				<td><input type='number' min='1' max='9' name='5' id='5' ></td>
+				<td><input type='number' min='1' max='9' name='6' id='6' ></td>
+				<td><input type='number' min='1' max='9' name='7' id='7' ></td>
+				<td><input type='number' min='1' max='9' name='8' id='8' ></td>
+				<td><input type='number' min='1' max='9' name='9' id='9' ></td>
+			</tr>
+			<tr>
+				<td><input type='number' min='1' max='9' name='10' id'10'></td>
+				<td><input type='number' min='1' max='9' name='11' id'11'></td>
+				<td><input type='number' min='1' max='9' name='12' id'12'></td>
+				<td><input type='number' min='1' max='9' name='13' id'13'></td>
+				<td><input type='number' min='1' max='9' name='14' id'14'></td>
+				<td><input type='number' min='1' max='9' name='15' id'15'></td>
+				<td><input type='number' min='1' max='9' name='16' id'16'></td>
+				<td><input type='number' min='1' max='9' name='17' id'17'></td>
+				<td><input type='number' min='1' max='9' name='18' id'18'></td>
+			</tr>
 
+			<tr>
+				<td><input type='number' min='1' max='9' name='19' id'19'></td>
+				<td><input type='number' min='1' max='9' name='20' id'20'></td>
+				<td><input type='number' min='1' max='9' name='21' id'21'></td>
+				<td><input type='number' min='1' max='9' name='22' id'22'></td>
+				<td><input type='number' min='1' max='9' name='23' id'23'></td>
+				<td><input type='number' min='1' max='9' name='24' id'24'></td>
+				<td><input type='number' min='1' max='9' name='25' id'25'></td>
+				<td><input type='number' min='1' max='9' name='26' id'26'></td>
+				<td><input type='number' min='1' max='9' name='27' id'27'></td>
+				
+			</tr>
+
+			<tr>
+				<td><input type='number' min='1' max='9' name='28' id'28'></td>
+				<td><input type='number' min='1' max='9' name='29' id'29'></td>
+				<td><input type='number' min='1' max='9' name='30' id'30'></td>
+				<td><input type='number' min='1' max='9' name='31' id'31'></td>
+				<td><input type='number' min='1' max='9' name='32' id'32'></td>
+				<td><input type='number' min='1' max='9' name='33' id'33'></td>
+				<td><input type='number' min='1' max='9' name='34' id'34'></td>
+				<td><input type='number' min='1' max='9' name='35' id'35'></td>
+				<td><input type='number' min='1' max='9' name='36' id'36'></td>
+			</tr>
+
+			<tr>
+				<td><input type='number' min='1' max='9' name='37' id'37'></td>
+				<td><input type='number' min='1' max='9' name='38' id'38'></td>
+				<td><input type='number' min='1' max='9' name='39' id'39'></td>
+				<td><input type='number' min='1' max='9' name='40' id'40'></td>
+				<td><input type='number' min='1' max='9' name='41' id'41'></td>
+				<td><input type='number' min='1' max='9' name='42' id'42'></td>
+				<td><input type='number' min='1' max='9' name='43' id'43'></td>
+				<td><input type='number' min='1' max='9' name='44' id'44'></td>
+				<td><input type='number' min='1' max='9' name='45' id'45'></td>
+				
+			</tr>
+
+			<tr>
+				<td><input type='number' min='1' max='9' name='46' id'46'></td>
+				<td><input type='number' min='1' max='9' name='47' id'47'></td>
+				<td><input type='number' min='1' max='9' name='48' id'48'></td>
+				<td><input type='number' min='1' max='9' name='49' id'49'></td>
+				<td><input type='number' min='1' max='9' name='50' id'50'></td>
+				<td><input type='number' min='1' max='9' name='51' id'51'></td>
+				<td><input type='number' min='1' max='9' name='52' id'52'></td>
+				<td><input type='number' min='1' max='9' name='53' id'53'></td>
+				<td><input type='number' min='1' max='9' name='54' id'54'></td>
+					
+			</tr>
+
+			<tr>
+				<td><input type='number' min='1' max='9' name='55' id'55'></td>
+				<td><input type='number' min='1' max='9' name='56' id'56'></td>				
+				<td><input type='number' min='1' max='9' name='57' id'57'></td>				
+				<td><input type='number' min='1' max='9' name='58' id'58'></td>				
+				<td><input type='number' min='1' max='9' name='59' id'59'></td>
+				<td><input type='number' min='1' max='9' name='60' id'60'></td>
+				<td><input type='number' min='1' max='9' name='61' id'61'></td>
+				<td><input type='number' min='1' max='9' name='62' id'62'></td>
+				<td><input type='number' min='1' max='9' name='63' id'63'></td>
+					
+			</tr>
+
+			<tr>
+				<td><input type='number' min='1' max='9' name='64' id'64'></td>
+				<td><input type='number' min='1' max='9' name='65' id'65'></td>
+				<td><input type='number' min='1' max='9' name='66' id'66'></td>				
+				<td><input type='number' min='1' max='9' name='67' id'67'></td>				
+				<td><input type='number' min='1' max='9' name='68' id'68'></td>				
+				<td><input type='number' min='1' max='9' name='69' id'69'></td>
+				<td><input type='number' min='1' max='9' name='70' id'70'></td>
+				<td><input type='number' min='1' max='9' name='71' id'71'></td>
+				<td><input type='number' min='1' max='9' name='72' id'72'></td>
+			</tr>
+
+			<tr>
+				<td><input type='number' min='1' max='9' name='73' id'73'></td>
+				<td><input type='number' min='1' max='9' name='74' id'74'></td>
+				<td><input type='number' min='1' max='9' name='75' id'75'></td>
+				<td><input type='number' min='1' max='9' name='76' id'76'></td>
+				<td><input type='number' min='1' max='9' name='77' id'77'></td>
+				<td><input type='number' min='1' max='9' name='78' id'78'></td>
+				<td><input type='number' min='1' max='9' name='79' id'79'></td>
+				<td><input type='number' min='1' max='9' name='80' id'80'></td>
+				<td><input type='number' min='1' max='9' name='81' id'81'></td>
+			</tr>
+			</table>
 			<button type='submit'>Solve</button>
 		</form>
-
+		</div>
+		
+		
+		{% if posted %}
+		<div id="right">
+			<table >
+			<tr>
+				<td><input type='number' value={{ posted.1 }} disabled name='1' id="1" ></td>
+				<td><input type='number' value={{ posted.2 }} disabled name='2' id='2' ></td>
+				<td><input type='number' value={{ posted.3 }} disabled name='3' id='3' ></td>
+				<td><input type='number' value={{ posted.4 }} disabled name='4' id='4' ></td>
+				<td><input type='number' value={{ posted.5 }} disabled name='5' id='5' ></td>
+				<td><input type='number' value={{ posted.6 }} disabled name='6' id='6' ></td>
+				<td><input type='number' value={{ posted.7 }} disabled name='7' id='7' ></td>
+				<td><input type='number' value={{ posted.8 }} disabled name='8' id='8' ></td>
+				<td><input type='number' value={{ posted.9 }} disabled name='9' id='9' ></td>
+			</tr>
+			<tr>
+				<td><input type='number' value={{ posted.10 }} disabled name='10' id'10'></td>
+				<td><input type='number' value={{ posted.11 }} disabled name='11' id'11'></td>
+				<td><input type='number' value={{ posted.12 }} disabled name='12' id'12'></td>
+				<td><input type='number' value={{ posted.13 }} disabled name='13' id'13'></td>
+				<td><input type='number' value={{ posted.14 }} disabled name='14' id'14'></td>
+				<td><input type='number' value={{ posted.15 }} disabled name='15' id'15'></td>
+				<td><input type='number' value={{ posted.16 }} disabled name='16' id'16'></td>
+				<td><input type='number' value={{ posted.17 }} disabled name='17' id'17'></td>
+				<td><input type='number' value={{ posted.18 }} disabled name='18' id'18'></td>
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.19 }} disabled name='19' id'19'></td>
+				<td><input type='number' value={{ posted.20 }} disabled name='20' id'20'></td>
+				<td><input type='number' value={{ posted.21 }} disabled name='21' id'21'></td>
+				<td><input type='number' value={{ posted.22 }} disabled name='22' id'22'></td>
+				<td><input type='number' value={{ posted.23 }} disabled name='23' id'23'></td>
+				<td><input type='number' value={{ posted.24 }} disabled name='24' id'24'></td>
+				<td><input type='number' value={{ posted.25 }} disabled name='25' id'25'></td>
+				<td><input type='number' value={{ posted.26 }} disabled name='26' id'26'></td>
+				<td><input type='number' value={{ posted.27 }} disabled name='27' id'27'></td>
+				                                           
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.28 }} disabled name='28' id'28'></td>
+				<td><input type='number' value={{ posted.29 }} disabled name='29' id'29'></td>
+				<td><input type='number' value={{ posted.30 }} disabled name='30' id'30'></td>
+				<td><input type='number' value={{ posted.31 }} disabled name='31' id'31'></td>
+				<td><input type='number' value={{ posted.32 }} disabled name='32' id'32'></td>
+				<td><input type='number' value={{ posted.33 }} disabled name='33' id'33'></td>
+				<td><input type='number' value={{ posted.34 }} disabled name='34' id'34'></td>
+				<td><input type='number' value={{ posted.35 }} disabled name='35' id'35'></td>
+				<td><input type='number' value={{ posted.36 }} disabled name='36' id'36'></td>
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.37 }} disabled name='37' id'37'></td>
+				<td><input type='number' value={{ posted.38 }} disabled name='38' id'38'></td>
+				<td><input type='number' value={{ posted.39 }} disabled name='39' id'39'></td>
+				<td><input type='number' value={{ posted.40 }} disabled name='40' id'40'></td>
+				<td><input type='number' value={{ posted.41 }} disabled name='41' id'41'></td>
+				<td><input type='number' value={{ posted.42 }} disabled name='42' id'42'></td>
+				<td><input type='number' value={{ posted.43 }} disabled name='43' id'43'></td>
+				<td><input type='number' value={{ posted.44 }} disabled name='44' id'44'></td>
+				<td><input type='number' value={{ posted.45 }} disabled name='45' id'45'></td>
+				                                           
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.46 }} disabled name='46' id'46'></td>
+				<td><input type='number' value={{ posted.47 }} disabled name='47' id'47'></td>
+				<td><input type='number' value={{ posted.48 }} disabled name='48' id'48'></td>
+				<td><input type='number' value={{ posted.49 }} disabled name='49' id'49'></td>
+				<td><input type='number' value={{ posted.50 }} disabled name='50' id'50'></td>
+				<td><input type='number' value={{ posted.51 }} disabled name='51' id'51'></td>
+				<td><input type='number' value={{ posted.52 }} disabled name='52' id'52'></td>
+				<td><input type='number' value={{ posted.53 }} disabled name='53' id'53'></td>
+				<td><input type='number' value={{ posted.54 }} disabled name='54' id'54'></td>
+					                                   
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.55 }} disabled name='55' id'55'></td>
+				<td><input type='number' value={{ posted.56 }} disabled name='56' id'56'></td>				
+				<td><input type='number' value={{ posted.57 }} disabled name='57' id'57'></td>				
+				<td><input type='number' value={{ posted.58 }} disabled name='58' id'58'></td>				
+				<td><input type='number' value={{ posted.59 }} disabled name='59' id'59'></td>
+				<td><input type='number' value={{ posted.60 }} disabled name='60' id'60'></td>
+				<td><input type='number' value={{ posted.61 }} disabled name='61' id'61'></td>
+				<td><input type='number' value={{ posted.62 }} disabled name='62' id'62'></td>
+				<td><input type='number' value={{ posted.63 }} disabled name='63' id'63'></td>
+					                                   
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.64 }} disabled name='64' id'64'></td>
+				<td><input type='number' value={{ posted.65 }} disabled name='65' id'65'></td>
+				<td><input type='number' value={{ posted.66 }} disabled name='66' id'66'></td>				
+				<td><input type='number' value={{ posted.67 }} disabled name='67' id'67'></td>				
+				<td><input type='number' value={{ posted.68 }} disabled name='68' id'68'></td>				
+				<td><input type='number' value={{ posted.69 }} disabled name='69' id'69'></td>
+				<td><input type='number' value={{ posted.70 }} disabled name='70' id'70'></td>
+				<td><input type='number' value={{ posted.71 }} disabled name='71' id'71'></td>
+				<td><input type='number' value={{ posted.72 }} disabled name='72' id'72'></td>
+			</tr>                                              
+                                                                           
+			<tr>                                               
+				<td><input type='number' value={{ posted.73 }} disabled name='73' id'73'></td>
+				<td><input type='number' value={{ posted.74 }} disabled name='74' id'74'></td>
+				<td><input type='number' value={{ posted.75 }} disabled name='75' id'75'></td>
+				<td><input type='number' value={{ posted.76 }} disabled name='76' id'76'></td>
+				<td><input type='number' value={{ posted.77 }} disabled name='77' id'77'></td>
+				<td><input type='number' value={{ posted.78 }} disabled name='78' id'78'></td>
+				<td><input type='number' value={{ posted.79 }} disabled name='79' id'79'></td>
+				<td><input type='number' value={{ posted.80 }} disabled name='80' id'80'></td>
+				<td><input type='number' value={{ posted.81 }} disabled name='81' id'81'></td>
+			</tr>
+			</table>
+		</div>
+		{% endif %}
+		</div>
+		
 	</body>
 </html>

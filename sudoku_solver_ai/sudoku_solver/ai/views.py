@@ -96,8 +96,8 @@ class HomeView(View):
                                    
         in80 = request.POST.get('80','0') 
         in81 = request.POST.get('81','0')
-        
-        return render(request,'base.html',{'msg':in80})
+    
+        return render(request,'base.html')
 
 
 
