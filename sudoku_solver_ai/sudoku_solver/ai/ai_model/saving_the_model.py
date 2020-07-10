@@ -1,4 +1,4 @@
-import pandas as pd
+mport pandas as pd
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,3 +35,44 @@ regressor.fit(x_train_reshaped,y_train_reshaped,epochs=10000,batch_size=10)
 regressor.save('./sudoku_model_v1.h5')
 
 # ??? model.h5 comming soon  ???
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
