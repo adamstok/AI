@@ -12,10 +12,10 @@ import joblib
 from training_data import X_train2, y_train2
 
 
-#scaler = MinMaxScaler()
-#training_data = scaler.fit_tranform(y_train2)
-#joblib.dump(scaler, './scaler.save')
-#scaler.transform(X_train2)
+scaler = MinMaxScaler()
+training_data = scaler.fit_tranform(y_train2)
+joblib.dump(scaler, './scaler.save')
+scaler.transform(X_train2)
 
 X_train, y_train = np.array(X_train2), np.array(y_train2)
 x_train_reshaped = X_train.reshape(30,1,81)
